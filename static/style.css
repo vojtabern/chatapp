@@ -1,0 +1,18 @@
+/*.col-md-6 {
+    
+}*/
+.container{
+    background-color: brown;
+    width: 960px;
+    height: 960px;
+}
+*{
+    background-color: brown;
+}
+#barva{
+    color: white;
+}
+#earlyaccess {
+    color: black;
+    font-weight: bolder;
+}
