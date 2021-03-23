@@ -45,6 +45,7 @@ let frajer;
     
     if(honza){
         chat.innerHTML += `<div class="row" id="mes" ><div class="col-sm-3"><p id="barva">${frajer}: ${honza}</div></div></p>`
+        honza=''
     }
 })
 
