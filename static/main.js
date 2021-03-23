@@ -18,7 +18,8 @@ vloz_jm.addEventListener('click', function(e) {
     if(zab!=0){
     kokos.style.visibility = 'hidden';
     kokos1.style.visibility = 'visible';
-    socket.emit('join-room', ROOM_ID, 'Někdo (early access)');
+    socket.emit('join-room', ROOM_ID, jmeno.value);
+    socket.emit('username', jmeno.value);
     console.log(jmeno);
     }
 })
@@ -27,16 +28,31 @@ vloz_jm.addEventListener('click', function(e) {
 socket.on('user-connected', userId => {
     chat.innerHTML += `<div id="earlyaccess"> Právě se připojil ${userId} </div>` ;
     console.log('User connected ' + userId)
+
+
+}) 
+let honza;
+   socket.on('message', message => {
+       honza = message;
+        //chat.innerHTML += `<p id="barva">${message} </p></div></div>`;
+        console.log(message);
+    })
+let frajer;
+    socket.on('username', username => {
+        console.log(username);
+        frajer=username;
+        //chat.innerHTML += `<div class="row"><div class="col-sm-3"><p id="barva"> ${username}</p>`;   
+    
+    if(honza){
+        chat.innerHTML += `<div class="row" id="mes" ><div class="col-sm-3"><p id="barva">${frajer}: ${honza}</div></div></p>`
+    }
 })
 
-socket.on('message', message => {
-    chat.innerHTML += `<div id="barva"> ${zab}: ${message} </div>`;
-    console.log(message)
-})
 
 button.addEventListener('click', function(e) {
     if (zprava.value)
     socket.emit ('chat', zprava.value);
+    socket.emit('username', jmeno.value);
     
 })
 

@@ -33,6 +33,9 @@ io.on('connection', socket => {
     socket.on('chat', msg => {
         io.emit('message', msg);
     })
+    socket.on('username', username => {
+        io.emit('username', username);
+    })
 })
 
 
